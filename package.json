@@ -21,7 +21,7 @@
     "formdata"
   ],
   "license": "MIT",
-  "name": "node-red-contrib-http-request-multipart-formdata",
+  "name": "@superbexperience/node-red-contrib-http-request-multipart-formdata",
   "node-red": {
     "nodes": {
       "http-request-multipart-formdata": "http-request-multipart-formdata.js"
@@ -31,6 +31,9 @@
     "type": "git",
     "url": "git+https://github.com/superbexperience/node-red-contrib-http-request-multipart-formdata.git"
   },
-  "scripts": {},
+  "scripts": {
+    "pkg:publish": "npm publish"
+  },
+  "author": "SUPERB XP IT team",
   "version": "0.1.0"
 }
