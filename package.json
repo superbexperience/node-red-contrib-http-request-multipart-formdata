@@ -1,0 +1,36 @@
+{
+  "bugs": {
+    "url": "https://github.com/superbexperience/node-red-contrib-http-request-multipart-formdata/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "file-type": ">=12.4.0",
+    "mime-types": "^2.1.28",
+    "form-data": ">=3.0.0",
+    "mustache": ">=2.3.0",
+    "request": ">=2.86.0",
+    "lodash": "^4.17.20",
+    "object-to-formdata": "^4.1.0"
+  },
+  "deprecated": false,
+  "description": "Node-red component to make http request multipart formdata",
+  "homepage": "https://github.com/superbexperience/node-red-contrib-http-request-multipart-formdata#readme",
+  "keywords": [
+    "node-red",
+    "multipart",
+    "formdata"
+  ],
+  "license": "MIT",
+  "name": "node-red-contrib-http-request-multipart-formdata",
+  "node-red": {
+    "nodes": {
+      "http-request-multipart-formdata": "http-request-multipart-formdata.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superbexperience/node-red-contrib-http-request-multipart-formdata.git"
+  },
+  "scripts": {},
+  "version": "0.1.0"
+}

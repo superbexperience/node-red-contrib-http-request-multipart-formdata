@@ -1,0 +1,142 @@
+<script type="text/javascript">
+	RED.nodes.registerType('http-request-multipart-formdata', {
+		category: 'network',
+		color: "rgb(179, 211, 249)",
+		defaults: {
+			name: {
+				value: ""
+			},
+			ret: {
+				value: "txt"
+			},		
+			url: {
+				value: ""
+			},
+			tls: {
+				type: "tls-config",
+				required: false
+			}
+		},
+		credentials: {
+			user: {
+				type: "text"
+			},
+			password: {
+				type: "password"
+			}
+		},
+		inputs: 1,
+		outputs: 1,
+		icon: "white-globe.png",
+		label: function() {
+			return this.name || "http request multipart formdata";
+		},
+		labelStyle: function() {
+			return this.name ? "node_label_italic" : "";
+		},
+		oneditprepare: function() {
+			$("#node-input-useAuth").change(function() {
+				if ($(this).is(":checked")) {
+					$(".node-input-useAuth-row").show();
+
+					return;
+				};
+
+				$(".node-input-useAuth-row").hide();
+				$('#node-input-user').val('');
+				$('#node-input-password').val('');
+			});
+		
+			$('#node-input-useAuth').prop('checked', false);
+
+			if (this.credentials.user || this.credentials.has_password) {
+				$('#node-input-useAuth').prop('checked', true);
+			}
+
+			$("#node-input-useAuth").change();
+
+			function updateTLSOptions() {
+				$("#node-row-tls").hide();
+
+				if ($("#node-input-usetls").is(':checked')) {
+					$("#node-row-tls").show();
+				};
+			}
+			
+			$('#node-input-usetls').prop('checked', false);
+
+			if (this.tls) {
+				$('#node-input-usetls').prop('checked', true);
+			};
+
+			updateTLSOptions();
+
+			$("#node-input-usetls").on("click", function() {
+				updateTLSOptions();
+			});
+
+			$("#node-input-ret").change(function() {
+				$("#tip-json").hide();
+
+				if ($("#node-input-ret").val() === "obj") {
+					$("#tip-json").show();
+				};
+			});
+		},
+		oneditsave: function() {
+			if (!$("#node-input-usetls").is(':checked')) {
+				$("#node-input-tls").val("_ADD_");
+			}
+		}
+	});
+</script>
+
+<script type="text/x-red" data-template-name="http-request-multipart-formdata">
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name </label>
+		<input type="text" id="node-input-name" data-i18n="[placeholder]common.label.name">
+	</div>
+	<div class="form-row">
+		<label for="node-input-url"><i class="fa fa-globe"></i> url </label>
+		<input type="text" id="node-input-url" placeholder="http://">
+	</div>
+
+	<div class="form-row">
+		<input type="checkbox" id="node-input-usetls" style="display: inline-block; width: auto; vertical-align: top;">
+		<label for="node-input-usetls" style="width: auto">  Enable secure (SSL/TLS) connection </label>
+		<div id="node-row-tls" class="hide">
+			<label style="width: auto; margin-left: 20px; margin-right: 10px;" for="node-input-tls"></label> Enable secure (SSL/TLS) connection <input type="text" style="width: 300px" id="node-input-tls">
+		</div>
+	</div>
+
+	<div class="form-row">
+		<input type="checkbox" id="node-input-useAuth" style="display: inline-block; width: auto; vertical-align: top;">
+		<label for="node-input-useAuth" style="width: 70%;"><span data-i18n="httpSendMultipart.basicauth"></span> Use basic authentication </label>
+		<div style="margin-left: 20px" class="node-input-useAuth-row hide">
+			<div class="form-row">
+				<label for="node-input-user"><i class="fa fa-user"></i> <span data-i18n="common.label.username"></span> Username </label>
+				<input type="text" id="node-input-user">
+			</div>
+			<div class="form-row">
+				<label for="node-input-password"><i class="fa fa-lock"></i> <span>Password</span></label>
+				<input type="password" id="node-input-password">
+			</div>
+		</div>
+	</div>
+
+	<div class="form-row">
+		<label for="node-input-ret"><i class="fa fa-arrow-left"></i><span> Return</span></label>
+		<select type="text" id="node-input-ret" style="width:70%;">
+        <option selected value="txt">UTF-8 string</option>
+        <option value="bin">Binary</option>
+        <option value="obj">a parsed JSON object</option>
+        </select>
+	</div>
+    
+</script>
+
+<script type="text/x-red" data-help-name="http-request-multipart-formdata">
+
+</script>
+
+
