@@ -3,7 +3,7 @@ This is a node-red node for posting http(s) requests containing files as multipa
 
 ## Installation
 ```sh
-$ npm install node-red-contrib-http-request-multipart-formdata
+$ npm install @superbexperience/node-red-contrib-http-request-multipart-formdata
 ```
 
 ## Usage
